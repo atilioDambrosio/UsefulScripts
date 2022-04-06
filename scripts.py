@@ -57,7 +57,7 @@ def pretty_search(dict_or_list, key_to_search, search_for_first_only=False):
 def timestr_to_num(timestr):
     return mdates.date2num(datetime.strptime('0' + timestr if timestr[1] == ':' else timestr, '%Y/%m/%d %H:%M:%S'))
 
-def size_array(self, array):
+def size_array(array):
     return array.ndim and array.size
 
 def diff_new_elements(_list, _list_actual):
@@ -85,7 +85,7 @@ def diff_remove_elements(_list, _list_actual):
     return list_remove_elements
 
 def read_config(path_file):
-    with open(outfile) as json_file:
+    with open(path_file) as json_file:
         data = json.load(json_file)
     return data
 
