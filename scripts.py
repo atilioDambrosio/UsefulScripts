@@ -1,3 +1,6 @@
+import os
+from datetime import datetime
+
 import numpy as np
 import json
 from collections.abc import Iterable
@@ -48,7 +51,6 @@ def pretty_search(dict_or_list, key_to_search, search_for_first_only=False):
                     return _search_result
                 elif _search_result:
                     for result in _search_result:
-                        print("EEEEA", result)
                         search_result.append(result)
     return search_result if search_result else None
 
@@ -82,18 +84,16 @@ def diff_remove_elements(_list, _list_actual):
             list_remove_elements = _list_actual
     return list_remove_elements
 
-def read_config(path):
-    outfile = os.path.join(path, "Files", "gant_config.json")
+def read_config(path_file):
     with open(outfile) as json_file:
         data = json.load(json_file)
     return data
 
-def save_name_dir_and_files(self):
-    path = os.path.join(self.currentPath, 'Catalog')
+def save_name_dir_and_files(path_file):
     listOfdir = {}
     _listOffiles = []
     list_of_files = {}
-    for nombre_directorio, dirs, ficheros in os.walk(path):
+    for nombre_directorio, dirs, ficheros in os.walk(path_file):
         dir = nombre_directorio.split("/")
         dir = dir[-1]
         listOfdir[dir] = []
@@ -107,12 +107,11 @@ def save_name_dir_and_files(self):
     with open(filePathTemp, 'w+', encoding='utf8') as outfile:
         json.dump(list_of_files, outfile, indent=4, ensure_ascii=False)
 
-def get_name_dir_and_files(self):
-    path = os.path.join(self.currentPath, 'Catalog')
+def get_name_dir_and_files(path_file):
     listOfdir = {}
     _listOffiles = []
     list_of_files = {}
-    for nombre_directorio, dirs, ficheros in os.walk(path):
+    for nombre_directorio, dirs, ficheros in os.walk(path_file):
         dir = nombre_directorio.split("/")
         dir = dir[-1]
         listOfdir[dir] = []
